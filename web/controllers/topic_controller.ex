@@ -14,6 +14,7 @@ defmodule Discuss.TopicController do
   end
 
   def create(conn, %{"topic" => topic}) do
+    IO.inspect topic
     changeset = Topic.changeset(%Topic{}, topic)
     case Repo.insert(changeset) do
       {:ok, _topic} ->
@@ -50,5 +51,5 @@ defmodule Discuss.TopicController do
       |>  put_flash(:info, "Topic Deleted")
       |>  redirect(to: topic_path(conn, :index))
   end
-  
+
 end
